@@ -2,7 +2,6 @@ import { ID, Query } from "appwrite";
 
 import { INewPost, INewUser, IUpdatePost } from "@/types";
 import { account, appwriteConfig, avatars, databases, storage } from "./config";
-import { any } from "zod";
 
 export async function createUserAccount(user:INewUser) {
   try {
@@ -335,7 +334,7 @@ export async function deletePost(postId: string, imageId: string) {
 }
 
 export async function getInfinitePosts({ pageParam}: {pageParam: number}) {
-  const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(3)]
+  const queries: unknown[] = [Query.orderDesc('$updatedAt'), Query.limit(3)]
 
   if(pageParam) {
     queries.push(Query.cursorAfter(pageParam.toString()));
@@ -345,7 +344,7 @@ export async function getInfinitePosts({ pageParam}: {pageParam: number}) {
     const posts = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.postCollectionId,
-      queries
+      queries.map(query => String(query))
     )
 
     if(!posts) throw Error;

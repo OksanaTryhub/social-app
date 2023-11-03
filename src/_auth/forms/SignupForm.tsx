@@ -61,6 +61,8 @@ const SignupForm = () => {
         }
     }
 
+    if(isUserLoading || isSigningIn) return <Loader/>
+
     return (
         <Form {...form}>
             <div className="sm:w-420 flex-center flex-col">
