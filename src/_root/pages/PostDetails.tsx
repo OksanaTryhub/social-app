@@ -19,7 +19,11 @@ const PostDetails = () => {
     <div className='post_details-container'>
       {isPending ? <Loader /> : (
         <div className="post_details-card">
-          <img src={post?.imageUrl} alt="post image" className='post_details-img'/>
+          <img 
+            src={post?.imageUrl} 
+            alt="post image" 
+            className='post_details-img object-top'
+          />
           <div className="post_details-info">
             <div className="flex-row flex-between w-full">
               <Link to={`/profile/${post?.creator.$id}`} className='flex items-center gap-3'>
