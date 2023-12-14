@@ -71,6 +71,10 @@ const PostForm = ({ post, action }: PostFormProps) => {
     navigate ('/');
   }
 
+  const cancelCreation = () => {
+    navigate ('/');
+  }
+
   if(isLoadingCreate) return <Loader />
 
   return (
@@ -143,7 +147,8 @@ const PostForm = ({ post, action }: PostFormProps) => {
         <div className="flex gap-4 items-center justify-end">
         <Button 
           type="button" 
-          className="shad-button_dark_4"
+            className="shad-button_dark_4"
+            onClick={cancelCreation}
         >
           Cancel
         </Button>
